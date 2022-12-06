@@ -25,7 +25,7 @@ function Courts() {
 	const getAllCourts = async () => {
 		try {
 			const { data } = await axios.get(
-				`${localhostUrl}/api/allCourts?&page=${currentPage}&search=${search}`,
+				`/api/allCourts?&page=${currentPage}&search=${search}`,
 			);
 			setCourts(data.courts);
 			setNumOfPages(data.numOfPages);
