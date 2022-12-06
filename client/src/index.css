@@ -837,13 +837,18 @@ li {
 
 .message > .content {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
   max-width: 40%;
   overflow-wrap: break-word;
   padding: 1rem;
   font-size: 1.1rem;
   border-radius: 1rem;
   color: #695b5b;
+}
+
+.content-date {
+  font-size: 12px;
 }
 
 .message.sent {

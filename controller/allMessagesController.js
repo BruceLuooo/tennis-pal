@@ -30,10 +30,13 @@ const getMessages = async (req, res, next) => {
 		}).sort({ updatedAt: 1 });
 
 		const projectedMessages = messages.map(msg => {
+			const convertDate = new Date(msg.createdAt);
+			const date = convertDate.toLocaleString();
+
 			return {
 				fromSelf: msg.sender.toString() === from,
 				message: msg.message.text,
-				date: msg.createdAt,
+				date: date,
 			};
 		});
 		res.json(projectedMessages);

@@ -91,8 +91,8 @@ function ChatContainer({ currentChat, currentUser, mostRecentChat, socket }) {
 							>
 								<div className='content'>
 									<span>{message.message}</span>
+									<span className='content-date'>{message.date}</span>
 								</div>
-								<span>{message.date}</span>
 							</div>
 						</div>
 					);
