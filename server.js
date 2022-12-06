@@ -24,9 +24,6 @@ app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/allUsers', require('./routes/allUsersRoutes'));
 app.use('/api/messages', require('./routes/allMessagesRoutes'));
 
-app.use(handleError);
-app.use(notFoundMiddleware);
-
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));
 
@@ -34,6 +31,9 @@ if (process.env.NODE_ENV === 'production') {
 		res.sendFile(path.join(__dirname + '/client/build/index.html'));
 	});
 }
+
+app.use(handleError);
+app.use(notFoundMiddleware);
 
 const server = app.listen(PORT, () =>
 	console.log(`server started on port ${PORT}`),
