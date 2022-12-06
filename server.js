@@ -19,6 +19,10 @@ app.use(cors());
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));
+
+	app.get('*', (req, res) => {
+		res.sendFile(path.join(__dirname + '/client/build/index.html'));
+	});
 }
 
 app.use(express.json());
@@ -32,13 +36,13 @@ app.use('/api/messages', require('./routes/allMessagesRoutes'));
 app.use(handleError);
 app.use(notFoundMiddleware);
 
-if (process.env.NODE_ENV === 'production') {
-	app.use(express.static('client/build'));
+// if (process.env.NODE_ENV === 'production') {
+// 	app.use(express.static('client/build'));
 
-	app.get('*', (req, res) => {
-		res.sendFile(path.join(__dirname + '/client/build/index.html'));
-	});
-}
+// 	app.get('*', (req, res) => {
+// 		res.sendFile(path.join(__dirname + '/client/build/index.html'));
+// 	});
+// }
 
 const server = app.listen(PORT, () =>
 	console.log(`server started on port ${PORT}`),
