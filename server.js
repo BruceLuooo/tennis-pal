@@ -39,7 +39,7 @@ const server = app.listen(PORT, () =>
 
 const io = socket(server, {
 	cors: {
-		origin: 'https://tennis-pal.herokuapp.com',
+		origin: 'http://localhost:3000',
 		credentials: true,
 	},
 });
