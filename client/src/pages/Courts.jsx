@@ -5,8 +5,6 @@ import ScrollPageButtons from '../components/buttons/ScrollPageButtons';
 import useDebounce from '../hooks/useDebounce';
 
 function Courts() {
-	const localhostUrl = 'http://localhost:5000';
-
 	const [courts, setCourts] = useState([]);
 	const [numOfPages, setNumOfPages] = useState(1);
 	const [currentPage, setCurrentPage] = useState(1);

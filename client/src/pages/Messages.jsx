@@ -8,7 +8,7 @@ import socketIO from 'socket.io-client';
 
 function Messages() {
 	const { id } = useParams();
-	const socket = socketIO.connect('http://localhost:5000');
+	const socket = socketIO.connect('https://tennis-pal.herokuapp.com');
 	console.log(socket);
 
 	const [contacts, setContacts] = useState([]);
@@ -17,11 +17,9 @@ function Messages() {
 	const { user } = useContext(AppContext);
 
 	useEffect(() => {
-		axios
-			.post('http://localhost:5000/api/users/getUserById', { id })
-			.then(({ data }) => {
-				setCurrentChat(data);
-			});
+		axios.post('/api/users/getUserById', { id }).then(({ data }) => {
+			setCurrentChat(data);
+		});
 	}, [id]);
 
 	useEffect(() => {
@@ -32,7 +30,7 @@ function Messages() {
 
 	useEffect(() => {
 		axios
-			.post(`http://localhost:5000/api/users/getAllContactedUsers`, {
+			.post(`/api/users/getAllContactedUsers`, {
 				user: user._id,
 			})
 			.then(({ data }) => {

@@ -6,8 +6,6 @@ import logo from '../assets/images/tennis-logo.jpeg';
 import { toast } from 'react-toastify';
 
 function SignUp() {
-	const LOCALHOST_URL = 'http://localhost:5000';
-
 	const navigate = useNavigate();
 	const { addUserToSessionStorage, login } = useContext(appContext);
 	const [btnDisabled, setBtnDisabled] = useState(false);
@@ -25,7 +23,7 @@ function SignUp() {
 
 	useEffect(() => {
 		const getAllCourtsLocation = async () => {
-			const { data } = await axios.get(`${LOCALHOST_URL}/api/allCourts/list`);
+			const { data } = await axios.get(`/api/allCourts/list`);
 			setAllLocations(data);
 		};
 		getAllCourtsLocation();
@@ -50,7 +48,7 @@ function SignUp() {
 			);
 		}
 		try {
-			await axios.post('http://localhost:5000/api/users/checkEmail', formData);
+			await axios.post('/api/users/checkEmail', formData);
 			setNextPage(true);
 		} catch (error) {
 			toast.error(error.response.data.Message);
@@ -85,10 +83,7 @@ function SignUp() {
 		try {
 			setBtnDisabled(true);
 
-			const response = await axios.post(
-				'http://localhost:5000/api/users',
-				formData,
-			);
+			const response = await axios.post('/api/users', formData);
 			const { user, token } = response.data;
 
 			addUserToSessionStorage({ user, token });

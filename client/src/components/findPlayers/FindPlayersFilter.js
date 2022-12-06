@@ -22,17 +22,15 @@ function FindPlayersFilter({
 	}, [filter, currentPage]);
 
 	const getAllUsers = async () => {
-		const localhostUrl = 'http://localhost:5000';
 		try {
 			const params = new URLSearchParams();
 			filter.level.forEach(level => params.append('level[]', level));
 			filter.locations.forEach(location =>
 				params.append('locations[]', location),
 			);
-			const { data } = await axios.get(
-				`${localhostUrl}/api/allUsers?page=${currentPage}`,
-				{ params },
-			);
+			const { data } = await axios.get(`/api/allUsers?page=${currentPage}`, {
+				params,
+			});
 			setUsers(data.allUsers);
 			setNumOfPages(data.numOfPages);
 			setIsLoading(false);

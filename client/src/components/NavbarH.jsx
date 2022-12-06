@@ -26,10 +26,7 @@ function NavbarH() {
 	const demoLogin = async () => {
 		const loginData = { email: 'test@gmail.com', password: 'test' };
 
-		const response = await axios.post(
-			`http://localhost:5000/api/users/login`,
-			loginData,
-		);
+		const response = await axios.post(`/api/users/login`, loginData);
 		const { token, user } = response.data;
 
 		addUserToSessionStorage({ user, token });

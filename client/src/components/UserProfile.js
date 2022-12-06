@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 
 function UserProfile() {
-	const LOCALHOST_URL = 'http://localhost:5000';
 	const {
 		togglePopup,
 		onChange,
@@ -30,7 +29,7 @@ function UserProfile() {
 		}
 		try {
 			const response = await axios.patch(
-				'http://localhost:5000/api/users/updateUser',
+				'/api/users/updateUser',
 				updateProfile,
 				{
 					headers: {
@@ -62,14 +61,12 @@ function UserProfile() {
 		let data = new FormData();
 		let imagedata = document.querySelector('input[type="file"]').files[0];
 		data.append('avatar', imagedata);
-		axios
-			.post(`${LOCALHOST_URL}/api/users/uploadPfp`, data, config)
-			.then(({ data }) => {
-				setUserData(prev => ({
-					...prev,
-					avatar: data.url,
-				}));
-			});
+		axios.post(`/api/users/uploadPfp`, data, config).then(({ data }) => {
+			setUserData(prev => ({
+				...prev,
+				avatar: data.url,
+			}));
+		});
 	};
 
 	return (
