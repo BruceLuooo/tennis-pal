@@ -21,6 +21,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/api/allCourts', require('./routes/allCourtsRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/allUsers', require('./routes/allUsersRoutes'));
+app.use('/api/messages', require('./routes/allMessagesRoutes'));
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));
@@ -29,9 +31,6 @@ if (process.env.NODE_ENV === 'production') {
 		res.sendFile(path.join(__dirname + '/client/build/index.html'));
 	});
 }
-
-app.use('/api/allUsers', require('./routes/allUsersRoutes'));
-app.use('/api/messages', require('./routes/allMessagesRoutes'));
 
 app.use(handleError);
 app.use(notFoundMiddleware);
