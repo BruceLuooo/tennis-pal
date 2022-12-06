@@ -20,6 +20,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/api/allCourts', require('./routes/allCourtsRoutes'));
+app.use('/api/users', require('./routes/userRoutes'));
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));
@@ -29,7 +30,6 @@ if (process.env.NODE_ENV === 'production') {
 	});
 }
 
-app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/allUsers', require('./routes/allUsersRoutes'));
 app.use('/api/messages', require('./routes/allMessagesRoutes'));
 
