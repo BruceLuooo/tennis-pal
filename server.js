@@ -17,20 +17,30 @@ connectDB();
 //middleware
 app.use(cors());
 
-app.use(express.static('client/build'));
+// app.use(express.static('client/build'));
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
 
-app.use('/api/users', require('./routes/userRoutes'));
-app.use('/api/allUsers', require('./routes/allUsersRoutes'));
-app.use('/api/allCourts', require('./routes/allCourtsRoutes'));
-app.use('/api/messages', require('./routes/allMessagesRoutes'));
+// app.use('/api/users', require('./routes/userRoutes'));
+// app.use('/api/allUsers', require('./routes/allUsersRoutes'));
+// app.use('/api/allCourts', require('./routes/allCourtsRoutes'));
+// app.use('/api/messages', require('./routes/allMessagesRoutes'));
 
 app.use(handleError);
 app.use(notFoundMiddleware);
 
 if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+
+	app.use(express.json());
+	app.use(express.urlencoded({ extended: false }));
+
+	app.use('/api/users', require('./routes/userRoutes'));
+	app.use('/api/allUsers', require('./routes/allUsersRoutes'));
+	app.use('/api/allCourts', require('./routes/allCourtsRoutes'));
+	app.use('/api/messages', require('./routes/allMessagesRoutes'));
+
 	app.get('*', (req, res) => {
 		res.sendFile(path.join(__dirname + '/client/build/index.html'));
 	});
