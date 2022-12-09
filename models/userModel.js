@@ -32,7 +32,8 @@ const userSchema = mongoose.Schema(
 		},
 		avatar: {
 			type: String,
-			default: 'https://cdn.discordapp.com/attachments/1007742096104497163/1013499279681277952/unknown.png',
+			default:
+				'https://cdn.discordapp.com/attachments/1007742096104497163/1013499279681277952/unknown.png',
 		},
 		isAdmin: {
 			type: Boolean,

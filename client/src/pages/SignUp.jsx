@@ -42,6 +42,11 @@ function SignUp() {
 			return toast.error('please fill in all the fields');
 		}
 
+		const trueEmail = email.includes('.com', -4);
+		if (!trueEmail) {
+			return toast.error('email must end with .com');
+		}
+
 		if (level > 5 || level < 1) {
 			return toast.error(
 				'Please enter a number between 1 and 5 to indicate your playing level',
